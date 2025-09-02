@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | MedCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .active-nav-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 gradient-bg text-white">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-blue-800">
+                    <div class="flex items-center">
+                        <i data-feather="activity" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-semibold">MedCare</span>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <div class="flex items-center px-4 py-3 mt-2 rounded-lg active-nav-item">
+                        <i data-feather="home" class="w-5 h-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-blue-200 uppercase tracking-wider px-4 py-2">Management</div>
+                        <a href="doctors.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="users" class="w-5 h-5"></i>
+                            <span class="ml-3">Doctors</span>
+                        </a>
+                        <a href="patients.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                            <span class="ml-3">Patients</span>
+                        </a>
+                        <a href="appointments.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="calendar" class="w-5 h-5"></i>
+                            <span class="ml-3">Appointments</span>
+                        </a>
+                        <a href="reports.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            <span class="ml-3">Reports</span>
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-blue-200 uppercase tracking-wider px-4 py-2">Communication</div>
+                        <a href="messages.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="message-square" class="w-5 h-5"></i>
+                            <span class="ml-3">Messages</span>
+                            <span class="ml-auto px-2 py-1 text-xs font-semibold bg-red-500 text-white rounded-full">3</span>
+                        </a>
+                    </div>
+                    <div class="mt-auto mb-4">
+                        <a href="setting.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="settings" class="w-5 h-5"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                        <a href="" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="log-out" class="w-5 h-5"></i>
+                            <span class="ml-3">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center">
+                        <button class="md:hidden text-gray-500 focus:outline-none">
+                            <i data-feather="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h1 class="ml-2 text-xl font-semibold text-gray-800">Admin Dashboard</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-500 focus:outline-none relative">
+                            <i data-feather="bell" class="w-5 h-5"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white">
+                                <i data-feather="user" class="w-4 h-4"></i>
+                            </div>
+                            <span class="ml-2 text-sm font-medium text-gray-700">Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                <i data-feather="users" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Total Doctors</p>
+                                <p class="text-2xl font-semibold text-gray-800">42</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-green-600 text-sm font-medium">+5.2%</span>
+                            <span class="text-gray-500 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                <i data-feather="user" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Total Patients</p>
+                                <p class="text-2xl font-semibold text-gray-800">1,248</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-green-600 text-sm font-medium">+12.4%</span>
+                            <span class="text-gray-500 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                                <i data-feather="calendar" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Today's Appointments</p>
+                                <p class="text-2xl font-semibold text-gray-800">36</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-red-600 text-sm font-medium">-2.1%</span>
+                            <span class="text-gray-500 text-sm ml-2">from yesterday</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                                <i data-feather="dollar-sign" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Monthly Revenue</p>
+                                <p class="text-2xl font-semibold text-gray-800">$24,780</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <span class="text-green-600 text-sm font-medium">+8.7%</span>
+                            <span class="text-gray-500 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Appointments -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden mb-6" data-aos="fade-up">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-semibold text-gray-800">Recent Appointments</h2>
+                            <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">View All</a>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Doctor</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                                                <i data-feather="user" class="text-gray-500"></i>
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">John Smith</div>
+                                                <div class="text-sm text-gray-500">john@example.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">Dr. Sarah Johnson</div>
+                                        <div class="text-sm text-gray-500">Cardiology</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">May 15, 2023</div>
+                                        <div class="text-sm text-gray-500">10:30 AM</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Confirmed</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
+                                        <a href="#" class="text-red-600 hover:text-red-900">Cancel</a>
+                                    </td>
+                                </tr>
+                                <!-- More appointment rows... -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden" data-aos="fade-up">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-lg font-semibold text-gray-800">Recent Messages</h2>
+                                <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-500">View All</a>
+                            </div>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            <!-- Message 1 -->
+                            <div class="p-4 hover:bg-gray-50 transition">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i data-feather="user" class="text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-gray-900">Dr. Michael Brown</h3>
+                                            <span class="text-xs text-gray-500">2h ago</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">Can we schedule a meeting to discuss the new equipment requirements?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- More messages... -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h2 class="text-lg font-semibold text-gray-800">Quick Actions</h2>
+                        </div>
+                        <div class="p-6 grid grid-cols-2 gap-4">
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-blue-100 text-blue-600 mb-2">
+                                    <i data-feather="user-plus" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Add Doctor</span>
+                            </a>
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-green-100 text-green-600 mb-2">
+                                    <i data-feather="user" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Add Patient</span>
+                            </a>
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-purple-100 text-purple-600 mb-2">
+                                    <i data-feather="calendar" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Schedule Appointment</span>
+                            </a>
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mb-2">
+                                    <i data-feather="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Generate Report</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+        feather.replace();
+    </script>
+</body>
+</html>

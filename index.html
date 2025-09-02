@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedCare - Hospital Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i data-feather="activity" class="w-8 h-8"></i>
+                <span class="text-xl font-bold">MedCare</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="hover:text-blue-200">Home</a>
+                <a href="#" class="hover:text-blue-200">About</a>
+                <a href="#" class="hover:text-blue-200">Services</a>
+                <a href="#" class="hover:text-blue-200">Contact</a>
+            </div>
+            <div class="flex space-x-4">
+                <a href="login.html" class="px-4 py-2 rounded-lg bg-white text-blue-600 font-medium hover:bg-blue-50 transition">Login</a>
+                <a href="register.html" class="px-4 py-2 rounded-lg border border-white text-white font-medium hover:bg-white hover:text-blue-600 transition">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Advanced Hospital Management System</h1>
+                <p class="text-xl mb-8 text-blue-100">Streamline your healthcare operations with our comprehensive solution for admins, doctors, and patients.</p>
+                <div class="flex space-x-4">
+                    <a href="register.html" class="px-6 py-3 bg-white text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition">Get Started</a>
+                    <a href="#" class="px-6 py-3 border border-white rounded-lg font-medium hover:bg-white hover:text-blue-600 transition">Learn More</a>
+                </div>
+            </div>
+            <div class="md:w-1/2" data-aos="fade-left">
+                <img src="https://illustrations.popsy.co/amber/medical-care.svg" alt="Healthcare Illustration" class="w-full max-w-md mx-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-16 text-gray-800">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition card-hover" data-aos="fade-up">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="users" class="text-white w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Role-Based Access</h3>
+                    <p class="text-gray-600">Secure access for admins, doctors, and patients with different dashboards and permissions.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="calendar" class="text-white w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Appointment Management</h3>
+                    <p class="text-gray-600">Easily schedule, approve, or cancel appointments with real-time updates.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition card-hover" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mb-4">
+                        <i data-feather="message-square" class="text-white w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Integrated Chat System</h3>
+                    <p class="text-gray-600">Secure communication between patients, doctors, and administrators.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Ready to Transform Your Healthcare Management?</h2>
+            <p class="text-xl mb-8 text-gray-600 max-w-2xl mx-auto">Join thousands of healthcare providers who trust our system for their daily operations.</p>
+            <a href="register.html" class="px-8 py-3 gradient-bg text-white rounded-lg font-medium inline-block hover:shadow-lg transition">Start Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i data-feather="activity" class="w-6 h-6 mr-2"></i> MedCare
+                    </h3>
+                    <p class="text-gray-400">Advanced Hospital Management System for modern healthcare providers.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Pricing</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400"><i data-feather="mail" class="w-4 h-4 mr-2"></i> contact@medcare.com</li>
+                        <li class="flex items-center text-gray-400"><i data-feather="phone" class="w-4 h-4 mr-2"></i> +1 (555) 123-4567</li>
+                        <li class="flex items-center text-gray-400"><i data-feather="map-pin" class="w-4 h-4 mr-2"></i> 123 Medical Drive, Health City</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 MedCare Hospital Management System. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

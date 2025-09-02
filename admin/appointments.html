@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments | MedCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .active-nav-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 gradient-bg text-white">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-blue-800">
+                    <div class="flex items-center">
+                        <i data-feather="activity" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-semibold">MedCare</span>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <a href="index.html" class="flex items-center px-4 py-3 mt-2 rounded-lg hover:bg-blue-700 transition">
+                        <i data-feather="home" class="w-5 h-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-blue-200 uppercase tracking-wider px-4 py-2">Management</div>
+                        <a href="doctors.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="users" class="w-5 h-5"></i>
+                            <span class="ml-3">Doctors</span>
+                        </a>
+                        <a href="patients.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                            <span class="ml-3">Patients</span>
+                        </a>
+                        <a href="appointments.html" class="flex items-center px-4 py-3 mt-1 rounded-lg active-nav-item">
+                            <i data-feather="calendar" class="w-5 h-5"></i>
+                            <span class="ml-3">Appointments</span>
+                        </a>
+                        <a href="reports.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            <span class="ml-3">Reports</span>
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-blue-200 uppercase tracking-wider px-4 py-2">Communication</div>
+                        <a href="messages.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="message-square" class="w-5 h-5"></i>
+                            <span class="ml-3">Messages</span>
+                            <span class="ml-auto px-2 py-1 text-xs font-semibold bg-red-500 text-white rounded-full">3</span>
+                        </a>
+                    </div>
+                    <div class="mt-auto mb-4">
+                        <a href="setting.html" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="settings" class="w-5 h-5"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="log-out" class="w-5 h-5"></i>
+                            <span class="ml-3">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center">
+                        <button class="md:hidden text-gray-500 focus:outline-none">
+                            <i data-feather="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h1 class="ml-2 text-xl font-semibold text-gray-800">Appointments Management</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-500 focus:outline-none relative">
+                            <i data-feather="bell" class="w-5 h-5"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white">
+                                <i data-feather="user" class="w-4 h-4"></i>
+                            </div>
+                            <span class="ml-2 text-sm font-medium text-gray-700">Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                <!-- Page Header -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6" data-aos="fade-up">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Appointments Schedule</h2>
+                        <p class="text-gray-600">View and manage all upcoming and past appointments</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition flex items-center">
+                            <i data-feather="calendar" class="w-4 h-4 mr-2"></i>
+                            Schedule New Appointment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calendar and Filters -->
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6" data-aos="fade-up">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="md:col-span-2">
+                            <div class="relative">
+                                <input type="text" placeholder="Search appointments by patient, doctor or ID..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <i data-feather="search" class="absolute left-3 top-3 text-gray-400"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option>All Status</option>
+                                <option>Scheduled</option>
+                                <option>Completed</option>
+                                <option>Cancelled</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointments View Toggle -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 bg-white border border-gray-300 rounded-l-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <i data-feather="list" class="w-4 h-4 mr-1"></i> List View
+                        </button>
+                        <button class="px-4 py-2 bg-white border-t border-b border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <i data-feather="calendar" class="w-4 h-4 mr-1"></i> Calendar
+                        </button>
+                        <button class="px-4 py-2 bg-white border border-gray-300 rounded-r-lg text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            <i data-feather="grid" class="w-4 h-4 mr-1"></i> Grid
+                        </button>
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        Today: <span class="font-medium">May 18, 2023</span>
+                    </div>
+                </div>
+
+                <!-- Appointments List -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden" data-aos="fade-up">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-semibold text-gray-800">Today's Appointments (36)</h2>
+                            <div class="flex items-center space-x-2">
+                                <button class="p-2 rounded-lg hover:bg-gray-100">
+                                    <i data-feather="filter" class="w-4 h-4 text-gray-500"></i>
+                                </button>
+                                <button class="p-2 rounded-lg hover:bg-gray-100">
+                                    <i data-feather="download" class="w-4 h-4 text-gray-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="divide-y divide-gray-200">
+                        <!-- Appointment Item -->
+                        <div class="p-4 hover:bg-gray-50 transition">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 pt-1">
+                                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-blue-100">
+                                        <i data-feather="clock" class="text-blue-600"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h3 class="text-sm font-medium text-gray-900">John Smith - Follow-up Consultation</h3>
+                                            <p class="text-sm text-gray-500 mt-1">With Dr. Sarah Johnson in Cardiology</p>
+                                        </div>
+                                        <span class="text-xs font-medium px-2 py-1 rounded-full bg-green-100 text-green-800">Confirmed</span>
+                                    </div>
+                                    <div class="mt-2 flex items-center justify-between">
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i data-feather="calendar" class="w-4 h-4 mr-1"></i>
+                                            <span>May 18, 2023 at 10:30 AM</span>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <button class="text-xs px-2 py-1 bg-blue-100 text-blue-800 rounded hover:bg-blue-200">Check-in</button>
+                                            <button class="text-xs px-2 py-1 bg-gray-100 text-gray-800 rounded hover:bg-gray-200">Reschedule</button>
+                                            <button class="text-xs px-2 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- More appointment items... -->
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">36</span> results
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Previous
+                                </button>
+                                <button class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+        feather.replace();
+    </script>
+</body>
+</html>

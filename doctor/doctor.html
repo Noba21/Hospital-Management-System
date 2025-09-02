@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard | MedCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .active-nav-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 gradient-bg text-white">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-green-700">
+                    <div class="flex items-center">
+                        <i data-feather="activity" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-semibold">MedCare</span>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <div class="flex items-center px-4 py-3 mt-2 rounded-lg active-nav-item">
+                        <i data-feather="home" class="w-5 h-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-green-200 uppercase tracking-wider px-4 py-2">Patient Care</div>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                            <span class="ml-3">My Patients</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="calendar" class="w-5 h-5"></i>
+                            <span class="ml-3">Appointments</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            <span class="ml-3">Prescriptions</span>
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-green-200 uppercase tracking-wider px-4 py-2">Communication</div>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="message-square" class="w-5 h-5"></i>
+                            <span class="ml-3">Messages</span>
+                            <span class="ml-auto px-2 py-1 text-xs font-semibold bg-red-500 text-white rounded-full">5</span>
+                        </a>
+                    </div>
+                    <div class="mt-auto mb-4">
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="settings" class="w-5 h-5"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="log-out" class="w-5 h-5"></i>
+                            <span class="ml-3">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center">
+                        <button class="md:hidden text-gray-500 focus:outline-none">
+                            <i data-feather="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h1 class="ml-2 text-xl font-semibold text-gray-800">Doctor Dashboard</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-500 focus:outline-none relative">
+                            <i data-feather="bell" class="w-5 h-5"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white">
+                                <i data-feather="user" class="w-4 h-4"></i>
+                            </div>
+                            <span class="ml-2 text-sm font-medium text-gray-700">Dr. Sarah Johnson</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                <!-- Welcome Card -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/4 mb-4 md:mb-0">
+                            <div class="w-24 h-24 rounded-full bg-green-100 flex items-center justify-center mx-auto">
+                                <i data-feather="user" class="w-12 h-12 text-green-600"></i>
+                            </div>
+                        </div>
+                        <div class="md:w-3/4 md:pl-6">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-2">Welcome back, Dr. Johnson</h2>
+                            <p class="text-gray-600 mb-4">You have 8 appointments scheduled for today. Your next appointment is with John Smith at 10:30 AM.</p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full">Cardiology</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">Available</span>
+                                <span class="px-3 py-1 bg-purple-100 text-purple-800 text-sm rounded-full">8 Years Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                <i data-feather="calendar" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Today's Appointments</p>
+                                <p class="text-2xl font-semibold text-gray-800">8</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                <i data-feather="user" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Active Patients</p>
+                                <p class="text-2xl font-semibold text-gray-800">142</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-6 card-hover transition" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                                <i data-feather="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-500">Pending Prescriptions</p>
+                                <p class="text-2xl font-semibold text-gray-800">5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden" data-aos="fade-up">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h2 class="text-lg font-semibold text-gray-800">Upcoming Appointments</h2>
+                                <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500">View All</a>
+                            </div>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            <!-- Appointment 1 -->
+                            <div class="p-4 hover:bg-gray-50 transition">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <i data-feather="user" class="text-blue-600"></i>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-gray-900">John Smith</h3>
+                                            <span class="text-xs text-gray-500">10:30 AM</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600 mt-1">Follow-up consultation for hypertension</p>
+                                        <div class="mt-2 flex items-center">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Confirmed</span>
+                                            <button class="ml-auto text-xs text-green-600 hover:text-green-500">View Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- More appointments... -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h2 class="text-lg font-semibold text-gray-800">Quick Actions</h2>
+                        </div>
+                        <div class="p-6 grid grid-cols-2 gap-4">
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-blue-100 text-blue-600 mb-2">
+                                    <i data-feather="calendar" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Schedule</span>
+                            </a>
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-green-100 text-green-600 mb-2">
+                                    <i data-feather="file-text" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Prescribe</span>
+                            </a>
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-purple-100 text-purple-600 mb-2">
+                                    <i data-feather="message-square" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Message</span>
+                            </a>
+                            <a href="#" class="p-4 border border-gray-200 rounded-lg hover:border-yellow-500 hover:bg-yellow-50 transition flex flex-col items-center">
+                                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600 mb-2">
+                                    <i data-feather="clock" class="w-5 h-5"></i>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">Availability</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+        feather.replace();
+    </script>
+</body>
+</html>
