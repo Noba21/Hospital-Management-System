@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescriptions | MedCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .active-nav-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+        }
+        .prescription-item:not(:last-child) {
+            border-bottom: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 gradient-bg text-white">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-green-700">
+                    <div class="flex items-center">
+                        <i data-feather="activity" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-semibold">MedCare</span>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <a href="dashboard.html" class="flex items-center px-4 py-3 mt-2 rounded-lg hover:bg-green-700 transition">
+                        <i data-feather="home" class="w-5 h-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-green-200 uppercase tracking-wider px-4 py-2">Patient Care</div>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                            <span class="ml-3">My Patients</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="calendar" class="w-5 h-5"></i>
+                            <span class="ml-3">Appointments</span>
+                        </a>
+                        <a href="prescriptions.html" class="flex items-center px-4 py-3 mt-1 rounded-lg active-nav-item">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            <span class="ml-3">Prescriptions</span>
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-green-200 uppercase tracking-wider px-4 py-2">Communication</div>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="message-square" class="w-5 h-5"></i>
+                            <span class="ml-3">Messages</span>
+                            <span class="ml-auto px-2 py-1 text-xs font-semibold bg-red-500 text-white rounded-full">5</span>
+                        </a>
+                    </div>
+                    <div class="mt-auto mb-4">
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="settings" class="w-5 h-5"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-green-700 transition">
+                            <i data-feather="log-out" class="w-5 h-5"></i>
+                            <span class="ml-3">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center">
+                        <button class="md:hidden text-gray-500 focus:outline-none">
+                            <i data-feather="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h1 class="ml-2 text-xl font-semibold text-gray-800">Prescriptions</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-500 focus:outline-none relative">
+                            <i data-feather="bell" class="w-5 h-5"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white">
+                                <i data-feather="user" class="w-4 h-4"></i>
+                            </div>
+                            <span class="ml-2 text-sm font-medium text-gray-700">Dr. Sarah Johnson</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                <!-- Header with Create Button -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-6" data-aos="fade-up">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Manage Prescriptions</h2>
+                        <p class="text-gray-600">Create and manage patient prescriptions</p>
+                    </div>
+                    <button id="createPrescriptionBtn" class="mt-4 md:mt-0 px-4 py-2 gradient-bg text-white rounded-lg flex items-center hover:opacity-90 transition">
+                        <i data-feather="plus" class="w-4 h-4 mr-2"></i>
+                        Create New Prescription
+                    </button>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="bg-white rounded-lg shadow-sm p-4 mb-6" data-aos="fade-up">
+                    <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
+                        <div class="flex-1">
+                            <div class="relative">
+                                <input type="text" placeholder="Search prescriptions..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <i data-feather="search" class="absolute left-3 top-2.5 text-gray-400 w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option>All Status</option>
+                                <option>Active</option>
+                                <option>Completed</option>
+                                <option>Expired</option>
+                            </select>
+                            <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option>Sort by Date</option>
+                                <option>Newest First</option>
+                                <option>Oldest First</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prescriptions List -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden" data-aos="fade-up">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-lg font-semibold text-gray-800">Recent Prescriptions</h2>
+                            <span class="text-sm text-gray-500">5 pending</span>
+                        </div>
+                    </div>
+                    <div class="divide-y divide-gray-200">
+                        <!-- Prescription 1 -->
+                        <div class="p-6 prescription-item hover:bg-gray-50 transition">
+                            <div class="flex flex-col md:flex-row md:items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center">
+                                        <h3 class="text-lg font-medium text-gray-900">John Smith</h3>
+                                        <span class="ml-3 px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">Hypertension Medication • 45 years old</p>
+                                    <div class="mt-2 flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Lisinopril 10mg</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Amlodipine 5mg</span>
+                                        <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">+2 more</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-2"><i data-feather="calendar" class="w-4 h-4 inline mr-1"></i> Issued: Oct 15, 2023 • Expires: Nov 15, 2023</p>
+                                </div>
+                                <div class="mt-4 md:mt-0 flex space-x-2">
+                                    <button class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-lg hover:bg-green-200 transition">View Details</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prescription 2 -->
+                        <div class="p-6 prescription-item hover:bg-gray-50 transition">
+                            <div class="flex flex-col md:flex-row md:items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center">
+                                        <h3 class="text-lg font-medium text-gray-900">Emily Johnson</h3>
+                                        <span class="ml-3 px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">Diabetes Management • 62 years old</p>
+                                    <div class="mt-2 flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Metformin 500mg</span>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Glipizide 5mg</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-2"><i data-feather="calendar" class="w-4 h-4 inline mr-1"></i> Issued: Oct 10, 2023 • Expires: Jan 10, 2024</p>
+                                </div>
+                                <div class="mt-4 md:mt-0 flex space-x-2">
+                                    <button class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-lg hover:bg-green-200 transition">View Details</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Prescription 3 -->
+                        <div class="p-6 prescription-item hover:bg-gray-50 transition">
+                            <div class="flex flex-col md:flex-row md:items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center">
+                                        <h3 class="text-lg font-medium text-gray-900">Michael Brown</h3>
+                                        <span class="ml-3 px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">Expired</span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">Antibiotic Course • 28 years old</p>
+                                    <div class="mt-2 flex flex-wrap gap-2">
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">Amoxicillin 500mg</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-2"><i data-feather="calendar" class="w-4 h-4 inline mr-1"></i> Issued: Sep 20, 2023 • Expired: Oct 5, 2023</p>
+                                </div>
+                                <div class="mt-4 md:mt-0 flex space-x-2">
+                                    <button class="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-lg hover:bg-green-200 transition">View Details</button>
+                                    <button class="px-3 py-1 bg-white border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50 transition">Renew</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                        <a href="#" class="text-sm font-medium text-green-600 hover:text-green-500 flex items-center justify-center">
+                            View all prescriptions
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Create Prescription Modal (Hidden by default) -->
+    <div id="prescriptionModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl w-11/12 md:w-3/4 lg:w-2/3 max-h-screen overflow-y-auto">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-800">Create New Prescription</h3>
+                <button id="closeModal" class="text-gray-400 hover:text-gray-600">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="prescriptionForm">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Patient</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option>Select a patient</option>
+                                <option>John Smith</option>
+                                <option>Emily Johnson</option>
+                                <option>Michael Brown</option>
+                                <option>Sarah Williams</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                            <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Medications</label>
+                        <div class="border border-gray-300 rounded-lg divide-y divide-gray-300">
+                            <div class="p-4">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+                                    <div class="md:col-span-5">
+                                        <input type="text" placeholder="Medication name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <input type="text" placeholder="Dosage" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                            <option>Frequency</option>
+                                            <option>Once daily</option>
+                                            <option>Twice daily</option>
+                                            <option>Three times daily</option>
+                                            <option>As needed</option>
+                                        </select>
+                                    </div>
+                                    <div class="md:col-span-1 flex items-center justify-center">
+                                        <button type="button" class="text-red-500 hover:text-red-700">
+                                            <i data-feather="trash-2" class="w-5 h-5"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="mt-2 flex items-center text-green-600 hover:text-green-800">
+                            <i data-feather="plus" class="w-4 h-4 mr-1"></i>
+                            Add another medication
+                        </button>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Instructions</label>
+                        <textarea rows="3" placeholder="Additional instructions for the patient" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Validity Period</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option>30 days</option>
+                                <option>60 days</option>
+                                <option>90 days</option>
+                                <option>6 months</option>
+                                <option>1 year</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Refills</label>
+                            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" id="cancelForm" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">Cancel</button>
+                        <button type="submit" class="px-4 py-2 gradient-bg text-white rounded-lg hover:opacity-90 transition">Save Prescription</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+        feather.replace();
+        
+        // Modal functionality
+        const modal = document.getElementById('prescriptionModal');
+        const createBtn = document.getElementById('createPrescriptionBtn');
+        const closeBtn = document.getElementById('closeModal');
+        const cancelBtn = document.getElementById('cancelForm');
+        const form = document.getElementById('prescriptionForm');
+        
+        createBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Form submission logic would go here
+            modal.classList.add('hidden');
+            // Show success message
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

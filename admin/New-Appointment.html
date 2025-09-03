@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Appointment | MedCare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .active-nav-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid white;
+        }
+
+        .time-slot {
+            transition: all 0.2s ease;
+        }
+
+        .time-slot:hover {
+            transform: scale(1.05);
+        }
+
+        .time-slot.selected {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 gradient-bg text-white">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-blue-800">
+                    <div class="flex items-center">
+                        <i data-feather="activity" class="w-6 h-6 mr-2"></i>
+                        <span class="text-xl font-semibold">MedCare</span>
+                    </div>
+                </div>
+                <div class="flex flex-col flex-grow px-4 py-4 overflow-y-auto">
+                    <a href="index.html"
+                        class="flex items-center px-4 py-3 mt-2 rounded-lg hover:bg-blue-700 transition">
+                        <i data-feather="home" class="w-5 h-5"></i>
+                        <span class="ml-3">Dashboard</span>
+                    </a>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-blue-200 uppercase tracking-wider px-4 py-2">Management
+                        </div>
+                        <a href="doctors.html"
+                            class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="users" class="w-5 h-5"></i>
+                            <span class="ml-3">Doctors</span>
+                        </a>
+                        <a href="patients.html"
+                            class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="user" class="w-5 h-5"></i>
+                            <span class="ml-3">Patients</span>
+                        </a>
+                        <a href="appointments.html" class="flex items-center px-4 py-3 mt-1 rounded-lg active-nav-item">
+                            <i data-feather="calendar" class="w-5 h-5"></i>
+                            <span class="ml-3">Appointments</span>
+                        </a>
+                        <a href="reports.html"
+                            class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            <span class="ml-3">Reports</span>
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <div class="text-xs font-semibold text-blue-200 uppercase tracking-wider px-4 py-2">
+                            Communication</div>
+                        <a href="messages.html"
+                            class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="message-square" class="w-5 h-5"></i>
+                            <span class="ml-3">Messages</span>
+                            <span
+                                class="ml-auto px-2 py-1 text-xs font-semibold bg-red-500 text-white rounded-full">3</span>
+                        </a>
+                    </div>
+                    <div class="mt-auto mb-4">
+                        <a href="setting.html"
+                            class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="settings" class="w-5 h-5"></i>
+                            <span class="ml-3">Settings</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 mt-1 rounded-lg hover:bg-blue-700 transition">
+                            <i data-feather="log-out" class="w-5 h-5"></i>
+                            <span class="ml-3">Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center">
+                        <button class="md:hidden text-gray-500 focus:outline-none">
+                            <i data-feather="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h1 class="ml-2 text-xl font-semibold text-gray-800">Schedule New Appointment</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="text-gray-500 focus:outline-none relative">
+                            <i data-feather="bell" class="w-5 h-5"></i>
+                            <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
+                        </button>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center text-white">
+                                <i data-feather="user" class="w-4 h-4"></i>
+                            </div>
+                            <span class="ml-2 text-sm font-medium text-gray-700">Admin</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto p-4 bg-gray-50">
+                <!-- Page Header -->
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6" data-aos="fade-up">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Schedule New Appointment</h2>
+                        <p class="text-gray-600">Create a new appointment for a patient with a healthcare provider</p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <a href="appointments.html"
+                            class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition flex items-center">
+                            <i data-feather="arrow-left" class="w-4 h-4 mr-2"></i>
+                            Back to Appointments
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Appointment Form -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6" data-aos="fade-up">
+                    <form id="appointmentForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Patient Selection -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Select Patient</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="">-- Select a patient --</option>
+                                        <option value="1">John Smith (ID: P12345)</option>
+                                        <option value="2">Emily Johnson (ID: P12346)</option>
+                                        <option value="3">Michael Brown (ID: P12347)</option>
+                                        <option value="4">Sarah Williams (ID: P12348)</option>
+                                        <option value="5">Robert Davis (ID: P12349)</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i data-feather="chevron-down" class="text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">Can't find the patient? <a href="#"
+                                        class="text-blue-600 hover:underline">Add new patient</a></p>
+                            </div>
+
+                            <!-- Doctor Selection -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Select Doctor</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="">-- Select a doctor --</option>
+                                        <option value="1">Dr. Sarah Johnson - Cardiology</option>
+                                        <option value="2">Dr. Michael Brown - Pediatrics</option>
+                                        <option value="3">Dr. Emily Davis - Dermatology</option>
+                                        <option value="4">Dr. Robert Wilson - Orthopedics</option>
+                                        <option value="5">Dr. Jennifer Lee - Neurology</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i data-feather="chevron-down" class="text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <p class="mt-2 text-sm text-gray-500">View <a href="#"
+                                        class="text-blue-600 hover:underline">doctor schedules and availability</a></p>
+                            </div>
+
+                            <!-- Date Selection -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Appointment Date</label>
+                                <div class="relative">
+                                    <input type="date"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i data-feather="calendar" class="text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Time Selection -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Available Time Slots</label>
+                                <div class="grid grid-cols-4 gap-2">
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">9:00
+                                        AM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">9:30
+                                        AM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">10:00
+                                        AM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">10:30
+                                        AM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">11:00
+                                        AM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">11:30
+                                        AM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">2:00
+                                        PM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">2:30
+                                        PM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">3:00
+                                        PM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">3:30
+                                        PM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">4:00
+                                        PM</button>
+                                    <button type="button"
+                                        class="time-slot py-2 text-xs text-center bg-gray-100 rounded-md hover:bg-blue-100 hover:text-blue-800">4:30
+                                        PM</button>
+                                </div>
+                            </div>
+
+                            <!-- Appointment Type -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Appointment Type</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="">-- Select type --</option>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="follow-up">Follow-up</option>
+                                        <option value="routine-check">Routine Check-up</option>
+                                        <option value="emergency">Emergency</option>
+                                        <option value="vaccination">Vaccination</option>
+                                        <option value="test">Test/Procedure</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i data-feather="chevron-down" class="text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Duration -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Duration</label>
+                                <div class="relative">
+                                    <select
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <option value="15">15 minutes</option>
+                                        <option value="30" selected>30 minutes</option>
+                                        <option value="45">45 minutes</option>
+                                        <option value="60">60 minutes</option>
+                                        <option value="90">90 minutes</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i data-feather="chevron-down" class="text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+                            <textarea
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                rows="3" placeholder="Add any notes or details about this appointment..."></textarea>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="mt-8 flex justify-end space-x-3">
+                            <button type="button"
+                                class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+                                Cancel
+                            </button>
+                            <button type="submit"
+                                class="px-6 py-3 gradient-bg text-white rounded-lg hover:opacity-90 transition flex items-center">
+                                <i data-feather="calendar" class="w-4 h-4 mr-2"></i>
+                                Schedule Appointment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Doctor Availability Section -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6" data-aos="fade-up">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Doctor Availability</h3>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i data-feather="user" class="text-blue-600"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h4 class="text-sm font-medium text-gray-900">Dr. Sarah Johnson</h4>
+                                <p class="text-xs text-gray-500">Cardiology</p>
+                            </div>
+                        </div>
+                        <span class="px-3 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Available
+                            Today</span>
+                    </div>
+
+                    <div class="border-t border-gray-200 pt-4">
+                        <h4 class="text-sm font-medium text-gray-700 mb-3">Schedule for May 18, 2023</h4>
+                        <div class="grid grid-cols-6 gap-2">
+                            <div class="text-center p-2 bg-gray-100 rounded-md">
+                                <p class="text-xs font-medium">9:00 AM</p>
+                                <span class="text-xs text-red-500">Booked</span>
+                            </div>
+                            <div class="text-center p-2 bg-gray-100 rounded-md">
+                                <p class="text-xs font-medium">9:30 AM</p>
+                                <span class="text-xs text-red-500">Booked</span>
+                            </div>
+                            <div class="text-center p-2 bg-green-100 rounded-md">
+                                <p class="text-xs font-medium">10:00 AM</p>
+                                <span class="text-xs text-green-600">Available</span>
+                            </div>
+                            <div class="text-center p-2 bg-green-100 rounded-md">
+                                <p class="text-xs font-medium">10:30 AM</p>
+                                <span class="text-xs text-green-600">Available</span>
+                            </div>
+                            <div class="text-center p-2 bg-gray-100 rounded-md">
+                                <p class="text-xs font-medium">11:00 AM</p>
+                                <span class="text-xs text-red-500">Booked</span>
+                            </div>
+                            <div class="text-center p-2 bg-gray-100 rounded-md">
+                                <p class="text-xs font-medium">11:30 AM</p>
+                                <span class="text-xs text-red-500">Booked</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        AOS.init();
+        feather.replace();
+
+        // Time slot selection functionality
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.addEventListener('click', function () {
+                // Remove selected class from all slots
+                document.querySelectorAll('.time-slot').forEach(s => {
+                    s.classList.remove('selected', 'bg-blue-500', 'text-white');
+                    s.classList.add('bg-gray-100', 'text-gray-800');
+                });
+
+                // Add selected class to clicked slot
+                this.classList.remove('bg-gray-100', 'text-gray-800');
+                this.classList.add('selected', 'bg-blue-500', 'text-white');
+            });
+        });
+
+        // Form submission
+        document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Appointment scheduled successfully!');
+            window.location.href = 'appointments.html';
+        });
+    </script>
+</body>
+
+</html>
